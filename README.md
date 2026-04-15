@@ -22,4 +22,6 @@ pip install -r requirements.txt
 
 确保 MySQL 服务已启动。
 
-### 4. 封装代码在helper中，运行demo代码可以验证增删改查功能
+### 4. 封装代码在helper中，运行demo代码可以验证增删改查功能。
+
+运行后会在mysql中生成名为testdb的数据库，并会进行增删改查演示。
