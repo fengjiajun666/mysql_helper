@@ -16,7 +16,7 @@ pip install -r requirements.txt
 ```
 ### 2. 修改路径
 
-复制 config.example.json 为 config.json，并将 password 改为您的 MySQL 密码。
+复制 config.example.json 为 config.json（或直接重命名），并将 password 改为您的 MySQL 密码。
 
 ### 3. 启动mysql
 
