@@ -49,12 +49,12 @@ class MySQLHelper:
     def test_connection(self):
         try:
             self._connect()
-            print("✅ 数据库连接成功！")
+            print(" 数据库连接成功")
             self._close()
             # 返回 True 表示成功
             return True
         except Exception as e:
-            print(f"❌ 连接失败：{e}")
+            print(f"连接失败：{e}")
             # 返回 False 表示失败
             return False
 
