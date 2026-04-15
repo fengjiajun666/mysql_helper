@@ -1,0 +1,9 @@
+{
+    "mysql": {
+        "host": "localhost",
+        "user": "root",
+        "password": "请修改成你的密码",
+        "database": "testdb",
+        "port": 3306
+    }
+}
