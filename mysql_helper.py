@@ -183,7 +183,6 @@ class MySQLHelper:
         return self.execute_non_query(sql, all_params)
 
     # 删除
-    # --------------------------------------------------------
     def delete(self, table, where_clause, params=None):
 
         sql = f"DELETE FROM {table} WHERE {where_clause}"
