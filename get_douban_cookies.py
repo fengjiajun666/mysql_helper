@@ -19,7 +19,7 @@ def get_driver():
 def save_cookies():
     driver = get_driver()
     driver.get('https://movie.douban.com/top250')
-    print("👉 请在弹出的浏览器中扫码或输入账号密码登录...")
+    print(" 请在弹出的浏览器中扫码或输入账号密码登录...")
     try:
         WebDriverWait(driver, 300).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, ".nav-user-account"))
