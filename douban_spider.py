@@ -6,9 +6,7 @@ import json
 import re
 from mysql_helper import MySQLHelper
 
-# ==========================================
-# 0. Cookie 管理模块（修复版）
-# ==========================================
+# Cookie 管理模块
 COOKIE_FILE = "douban_cookies.json"
 
 
@@ -25,10 +23,10 @@ def load_cookies_to_session(session):
                     domain=cookie.get('domain', ''),
                     path=cookie.get('path', '/')
                 )
-            print(f"👉 成功从文件加载了 {len(cookies_list)} 个 Cookies 到 Session")
+            print(f" 成功从文件加载了 {len(cookies_list)} 个 Cookies 到 Session")
             return True
     except FileNotFoundError:
-        print(f"❌ 未找到 Cookie 文件 {COOKIE_FILE}，请先运行 get_douban_cookies.py")
+        print(f" 未找到 Cookie 文件 {COOKIE_FILE}，请先运行 get_douban_cookies.py")
         return False
 
 
@@ -45,24 +43,24 @@ def check_cookies_valid(session):
             if "nav-user-account" in resp.text:
                 return True
             else:
-                print("❌ 未检测到用户账号元素，Cookie 可能已失效。")
+                print(" 未检测到用户账号元素，Cookie 可能已失效。")
                 return False
 
         elif resp.status_code == 403:
-            print("❌ 触发了豆瓣反爬 (403 Forbidden)。请稍微等待一段时间再运行。")
+            print(" 触发了豆瓣反爬 (403 Forbidden)。请稍微等待一段时间再运行。")
             return False
 
         else:
-            print(f"❌ 收到异常状态码: {resp.status_code}")
+            print(f" 收到异常状态码: {resp.status_code}")
             return False
 
     except Exception as e:
-        print(f"❌ 验证 Cookie 时发生网络异常: {e}")
+        print(f" 验证 Cookie 时发生网络异常: {e}")
         return False
 
 def refresh_cookies_automatically():
     import subprocess
-    print("🔄 Cookie 已失效，正在尝试自动刷新...")
+    print(" Cookie 已失效，正在尝试自动刷新...")
     try:
         subprocess.run(["python", "get_douban_cookies.py"], check=True)
         print("✅ Cookie 刷新程序运行完毕")
@@ -87,18 +85,18 @@ def get_valid_session():
         return None
 
     if check_cookies_valid(session):
-        print("✅ Cookie 验证通过，继续爬取")
+        print(" Cookie 验证通过，继续爬取")
         return session
     else:
-        print("⚠️ Cookie 验证失败，尝试刷新...")
+        print(" Cookie 验证失败，尝试刷新...")
         if refresh_cookies_automatically():
             # 刷新完重新加载到 session
             session.cookies.clear()
             load_cookies_to_session(session)
             if check_cookies_valid(session):
-                print("✅ 刷新后 Cookie 有效")
+                print(" 刷新后 Cookie 有效")
                 return session
-        print("❌ 无法获得有效 Cookie，请手动检查。")
+        print(" 无法获得有效 Cookie，请手动检查。")
         return None
 
 # 数据库配置与双表初始化

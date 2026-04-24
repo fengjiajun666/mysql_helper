@@ -24,17 +24,17 @@ def save_cookies():
         WebDriverWait(driver, 300).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, ".nav-user-account"))
         )
-        print("✅ 登录成功，正在保存 Cookies...")
+        print(" 登录成功，正在保存 Cookies...")
     except Exception as e:
-        print("❌ 登录超时或失败，请重试")
+        print(" 登录超时或失败，请重试")
         driver.quit()
         return
 
     cookies = driver.get_cookies()
-    # 改为保存全部
+    # 保存
     with open('douban_cookies.json', 'w', encoding='utf-8') as f:
         json.dump(cookies, f, ensure_ascii=False, indent=2)
-    print(f"✅ 已保存 {len(cookies)} 个 Cookies 到 douban_cookies.json")
+    print(f" 已保存 {len(cookies)} 个 Cookies 到 douban_cookies.json")
     driver.quit()
 
 if __name__ == "__main__":
