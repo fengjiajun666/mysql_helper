@@ -63,10 +63,10 @@ def refresh_cookies_automatically():
     print(" Cookie 已失效，正在尝试自动刷新...")
     try:
         subprocess.run(["python", "get_douban_cookies.py"], check=True)
-        print("✅ Cookie 刷新程序运行完毕")
+        print(" Cookie 刷新程序运行完毕")
         return True
     except Exception as e:
-        print(f"❌ 自动刷新失败: {e}，请手动运行 get_douban_cookies.py")
+        print(f" 自动刷新失败: {e}，请手动运行 get_douban_cookies.py")
         return False
 
 
@@ -251,14 +251,14 @@ def scrape_movie_details_and_comments(helper, session):
                             }
                             helper.insert("movie_comments", comment_data)
                             inserted_count += 1
-                    print(f"    ✓ 成功存入 {inserted_count} 条热评")
+                    print(f"    成功存入 {inserted_count} 条热评")
 
                 except Exception as e:
-                    print(f"    [警告] 抓取评论失败: {e}")
+                    print(f"   [警告] 抓取评论失败: {e}")
 
                 total_movies += 1
 
-            print(f"✓ 第 {page + 1} 页处理完毕。")
+            print(f" 第 {page + 1} 页处理完毕。")
             time.sleep(random.uniform(3.0, 5.0))    #延时控制，防封号
 
         except Exception as e:
